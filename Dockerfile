@@ -2,7 +2,7 @@ FROM python:3.9
 
 WORKDIR /ali/backend
 
-COPY requirements.txt /app/backend
+COPY requirements.txt /ali/backend
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y gcc default-libmysqlclient-dev pkg-config \
