@@ -90,12 +90,15 @@ WSGI_APPLICATION = 'notesapp.wsgi.application'
 DATABASES = {
 
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.mysql',  
         'NAME': os.getenv("DB_NAME"),
         'USER': os.getenv("DB_USER"),
         'PASSWORD': os.getenv("DB_PASSWORD"),
-        'HOST': os.getenv("DB_HOST"),
-        'PORT': os.getenv("DB_PORT"),
+        'HOST': os.getenv("DB_HOST", "db"), #Is settings.py mein sabse bada issue ye hai ke aapne database configurations ke liye os.getenv() 
+                                      #istemal kiya hai, lekin aapka environment (Docker ya Terminal) wo variables provide nahi kar raha.
+                                      #Jab os.getenv("DB_HOST") ko koi value nahi milti, toh wo None return karta hai,
+                                          #jiski wajah se Django ka MySQL driver crash ho jata hai.
+        'PORT': os.getenv("DB_PORT"),  #solution:- ("DB_HOST", "db") IS SE WO NOne return nae kre ge balke db ko me switch kre ga 
     }
 }
 
