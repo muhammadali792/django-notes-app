@@ -21,7 +21,8 @@ pipeline{
         }
         stage("Deploy"){
             steps{
-                deploy()
+                echo "we are deploying on web"
+                sh "docker run -p 8000:80 notes-app"
             }
         }
         
