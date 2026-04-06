@@ -22,7 +22,7 @@ pipeline{
         stage("Deploy"){
             steps{
                 echo "we are deploying on web"
-                sh "docker run -d -p 8000:80 notes-app"
+                sh "docker run -d -p 8000:8000 notes-app"
             }
         }
         
